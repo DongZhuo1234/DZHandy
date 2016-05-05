@@ -54,6 +54,18 @@ static char OperationKey;
 }
 
 
+- (void)callActionBlock:(UIControlEvents)event {
+    
+    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, &OperationKey);
+    
+    if(opreations == nil) return;
+    
+    void(^block)(id sender) = [opreations objectForKey:[UIControl eventName:event]];
+    
+    if (block) block(self);
+    
+}
+
 -(void)UIControlEventTouchDown{[self callActionBlock:UIControlEventTouchDown];}
 -(void)UIControlEventTouchDownRepeat{[self callActionBlock:UIControlEventTouchDownRepeat];}
 -(void)UIControlEventTouchDragInside{[self callActionBlock:UIControlEventTouchDragInside];}
@@ -75,17 +87,7 @@ static char OperationKey;
 -(void)UIControlEventAllEvents{[self callActionBlock:UIControlEventAllEvents];}
 
 
-- (void)callActionBlock:(UIControlEvents)event {
-    
-    NSMutableDictionary *opreations = (NSMutableDictionary*)objc_getAssociatedObject(self, &OperationKey);
-    
-    if(opreations == nil) return;
-    
-    void(^block)(id sender) = [opreations objectForKey:[UIControl eventName:event]];
-    
-    if (block) block(self);
-    
-}
+
 
 +(NSString *)eventName:(UIControlEvents)event
 {

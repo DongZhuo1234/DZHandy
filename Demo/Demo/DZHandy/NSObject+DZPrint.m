@@ -16,7 +16,7 @@
  */
 + (void) dzPrintIvars{
     
-    UInt32 outCount = 0;
+    unsigned int outCount = 0;
     
     Ivar *ivars = class_copyIvarList(self, &outCount);
     
@@ -39,7 +39,7 @@
  */
 + (void) dzPrintMethods{
     
-    UInt32 outCount = 0;
+    unsigned int outCount = 0;
     
     Method *methods = class_copyMethodList(self, &outCount);
     
