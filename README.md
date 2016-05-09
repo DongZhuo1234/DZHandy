@@ -1,6 +1,9 @@
 # DZHandy
 基于运行时的一些分类
 
+###支持pod导入
+pod 'DZHandy', '~> 1.0'
+
 ```Objective-C
 @interface DZSecondViewController ()
 @end
